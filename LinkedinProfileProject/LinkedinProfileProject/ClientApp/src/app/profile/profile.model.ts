@@ -1,9 +1,10 @@
 export class UserModel {
-    public id: number = 1;
-    public userName: string = "Metehan";
-    public surName: string = "Biçer";
-    public job: string = "Yazılımcı";
-    public city: string = "Ankara";
-    public district: string = "Keçiören";
-    public company: string = "Test";
+    public id: number;
+    public name: string;
+    public surName: string;
+    public job: string;
+    public districtId: number;
+    public districtName: string;
+    public cityName: string;
+    public company: string;
 }

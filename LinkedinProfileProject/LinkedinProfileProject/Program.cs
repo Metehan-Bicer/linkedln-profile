@@ -1,8 +1,16 @@
+using LinkedinProfileProject.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.ConfigureLinkedlnServices(builder.Configuration);
+
+builder.Services.AddDbContext<LinkedlnProfileContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("LinkedlnProfileContext")));
 
 var app = builder.Build();
 
