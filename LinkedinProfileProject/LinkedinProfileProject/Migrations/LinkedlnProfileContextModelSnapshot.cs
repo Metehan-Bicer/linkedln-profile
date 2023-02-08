@@ -36,6 +36,18 @@ namespace LinkedinProfileProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("City");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityName = "Ankara"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityName = "İstanbul"
+                        });
                 });
 
             modelBuilder.Entity("LinkedinProfileProject.Entities.District", b =>
@@ -58,6 +70,32 @@ namespace LinkedinProfileProject.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("District");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            DistrictName = "Çankaya"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 1,
+                            DistrictName = "Keçiören"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 2,
+                            DistrictName = "Kadıköy"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityId = 2,
+                            DistrictName = "Beyoğlu"
+                        });
                 });
 
             modelBuilder.Entity("LinkedinProfileProject.Entities.User", b =>

@@ -22,8 +22,9 @@ namespace LinkedinProfileProject.Services
         {
             UserModel userModel= new UserModel();
 
-            var tempUser= await this._context.User.FirstOrDefaultAsync();
+            var tempUser= await _context.User.Include(x=>x.District).ThenInclude(x=>x.City).FirstOrDefaultAsync();
             userModel =  _mapper.Map<UserModel>(tempUser);
+            // todo mete her metoda try catch eklenecek log yapısı ekle
 
             return userModel;
         }

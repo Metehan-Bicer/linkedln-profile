@@ -14,10 +14,12 @@ namespace LinkedinProfileProject.Contexts
 
             //todo mete scope lar eklenecek
             services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IBaseService, BaseService>();
 
 
             services.AddAutoMapper(
-           typeof(UserMapper)
+           typeof(UserMapper),
+           typeof(BaseMapper)
            );
         }
     }
