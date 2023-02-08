@@ -18,5 +18,10 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _abilitiesService.GetAbilitiesList(userId);
         }
+        [HttpPost("saveUpdateAbilities")]
+        public async Task<AbilitiesModel> SaveUpdateAbilities([FromBody] AbilitiesModel abilitiesModel)
+        {
+            return await _abilitiesService.SaveUpdateAbilities(abilitiesModel);
+        }
     }
 }

@@ -18,5 +18,10 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _experienceService.GetExperienceList(userId);
         }
+        [HttpPost("saveUpdateExperience")]
+        public async Task<ExperienceModel> SaveUpdateExperience([FromBody] ExperienceModel experienceModel)
+        {
+            return await _experienceService.SaveUpdateExperience(experienceModel);
+        }
     }
 }

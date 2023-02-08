@@ -29,5 +29,27 @@ namespace LinkedinProfileProject.Services
 
             return userModel;
         }
+        public async Task<AbilitiesModel> SaveUpdateAbilities(AbilitiesModel abilitiesModel)
+        {
+
+            var tempAbilities = await _context.Abilities.Where(x => x.Id == abilitiesModel.Id).FirstOrDefaultAsync();
+            if (tempAbilities == null)
+            {
+                tempAbilities = new Abilities();
+                tempAbilities = _mapper.Map<AbilitiesModel, Abilities>(abilitiesModel);
+                _context.Abilities.Add(tempAbilities);
+            }
+            else
+            {
+                tempAbilities = _mapper.Map<Abilities>(abilitiesModel);
+                _context.ChangeTracker.Clear();
+                _context.Update(tempAbilities);
+            }
+            await _context.SaveChangesAsync();
+            // transaction.Commit();
+            // todo mete her metoda try catch eklenecek log yapısı ekle ekleyince transaction aç
+
+            return abilitiesModel;
+        }
     }
 }

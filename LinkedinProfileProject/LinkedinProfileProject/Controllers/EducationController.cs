@@ -18,5 +18,10 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _educationService.GetEducationList(userId);
         }
+        [HttpPost("saveUpdateEducation")]
+        public async Task<EducationModel> SaveUpdateEducation([FromBody] EducationModel educationModel)
+        {
+            return await _educationService.SaveUpdateEducation(educationModel);
+        }
     }
 }

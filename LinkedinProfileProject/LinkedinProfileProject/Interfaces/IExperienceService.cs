@@ -5,6 +5,6 @@ namespace LinkedinProfileProject.Interfaces
     public interface IExperienceService
     {
         Task<List<ExperienceModel>> GetExperienceList(int userId);
-        // Task<UserModel> SaveUpdateUser(UserModel userModel);
+        Task<ExperienceModel> SaveUpdateExperience(ExperienceModel experienceModel);
     }
 }

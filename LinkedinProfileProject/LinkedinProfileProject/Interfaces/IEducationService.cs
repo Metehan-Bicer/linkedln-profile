@@ -5,6 +5,6 @@ namespace LinkedinProfileProject.Interfaces
     public interface IEducationService
     {
         Task<List<EducationModel>> GetEducationList(int userId);
-        // Task<UserModel> SaveUpdateUser(UserModel userModel);
+        Task<EducationModel> SaveUpdateEducation(EducationModel educationModel);
     }
 }

@@ -29,5 +29,27 @@ namespace LinkedinProfileProject.Services
 
             return userModel;
         }
+        public async Task<ExperienceModel> SaveUpdateExperience(ExperienceModel experienceModel)
+        {
+
+            var tempExperience = await _context.Experience.Where(x => x.Id == experienceModel.Id).FirstOrDefaultAsync();
+            if (tempExperience == null)
+            {
+                tempExperience = new Experience();
+                tempExperience = _mapper.Map<ExperienceModel, Experience>(experienceModel);
+                _context.Experience.Add(tempExperience);
+            }
+            else
+            {
+                tempExperience = _mapper.Map<Experience>(tempExperience);
+                _context.ChangeTracker.Clear();
+                _context.Update(tempExperience);
+            }
+            await _context.SaveChangesAsync();
+            // transaction.Commit();
+            // todo mete her metoda try catch eklenecek log yapısı ekle ekleyince transaction aç
+
+            return experienceModel;
+        }
     }
 }
