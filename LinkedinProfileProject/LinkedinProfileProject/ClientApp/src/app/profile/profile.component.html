@@ -5,14 +5,14 @@
         </div>
         <div class="row" style="margin-top: 15%; margin-left: 2%;" #userDetail>
             <div class="col-8">
-                <b style="font-size: 20px;">{{userModel.name}} {{userModel.surName}}</b>
+                <b style="font-size: 20px;">{{userModel?.name}} {{userModel?.surName}}</b>
                 <br>
-                {{userModel.job}}
+                {{userModel?.job}}
                 <br>
-                <i style="opacity:0.7;">{{userModel.cityName}},{{userModel.districtName}}</i>
+                <i style="opacity:0.7;">{{userModel?.cityName}},{{userModel?.districtName}}</i>
             </div>
             <div class="col-4">
-                <b>{{userModel.company}}</b>
+                <b>{{userModel?.company}}</b>
             </div>
         </div>
     </div>

@@ -13,6 +13,9 @@ namespace LinkedinProfileProject.Contexts
         public DbSet<City> City { get; set; }
         public DbSet<District> District { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<Experience> Experience { get; set; }
+        public DbSet<Education> Education { get; set; }
+        public DbSet<Abilities> Abilities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,7 +25,7 @@ namespace LinkedinProfileProject.Contexts
             );
 
             modelBuilder.Entity<District>().HasData(
-                new District() { Id = 1,CityId = 1, DistrictName = "Çankaya" },
+                new District() { Id = 1, CityId = 1, DistrictName = "Çankaya" },
                 new District() { Id = 2, CityId = 1, DistrictName = "Keçiören" },
                 new District() { Id = 3, CityId = 2, DistrictName = "Kadıköy" },
                 new District() { Id = 4, CityId = 2, DistrictName = "Beyoğlu" }

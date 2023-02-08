@@ -14,6 +14,7 @@ namespace LinkedinProfileProject.Mappers
              .ForMember(destination => destination.CityName,
              options => options.MapFrom(source => source.District.City.CityName));
 
+            CreateMap<UserModel, User>();
 
         }
     }
