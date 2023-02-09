@@ -6,5 +6,7 @@ namespace LinkedinProfileProject.Interfaces
     {
         Task<List<EducationModel>> GetEducationList(int userId);
         Task<EducationModel> SaveUpdateEducation(EducationModel educationModel);
+        Task<bool> DeleteEducation(int id);
+
     }
 }

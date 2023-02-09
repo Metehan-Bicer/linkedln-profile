@@ -51,5 +51,18 @@ namespace LinkedinProfileProject.Services
 
             return abilitiesModel;
         }
+
+        public async Task<bool> DeleteAbilities(int id)
+        {
+            var dbItem = await _context.Abilities.Where(l => l.Id == id).FirstOrDefaultAsync();
+            if (dbItem != null)
+            {
+                _context.Abilities.Remove(dbItem);
+            }
+            await _context.SaveChangesAsync();
+            return true;
+            //catch e düşürse false dön
+
+        }
     }
 }

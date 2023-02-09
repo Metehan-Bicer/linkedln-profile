@@ -23,5 +23,10 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _abilitiesService.SaveUpdateAbilities(abilitiesModel);
         }
+        [HttpPost("deleteAbilitiesByUserId")]
+        public async Task<bool> DeleteAbilitiesByUserId([FromBody] int id)
+        {
+            return await _abilitiesService.DeleteAbilities(id);
+        }
     }
 }

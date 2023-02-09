@@ -6,5 +6,6 @@ namespace LinkedinProfileProject.Interfaces
     {
         Task<List<ExperienceModel>> GetExperienceList(int userId);
         Task<ExperienceModel> SaveUpdateExperience(ExperienceModel experienceModel);
+        Task<bool> DeleteExperience(int id);
     }
 }

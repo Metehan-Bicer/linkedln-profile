@@ -23,5 +23,10 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _experienceService.SaveUpdateExperience(experienceModel);
         }
+        [HttpPost("deleteExperienceByUserId")]
+        public async Task<bool> DeleteExperienceByUserId([FromBody] int id)
+        {
+            return await _experienceService.DeleteExperience(id);
+        }
     }
 }

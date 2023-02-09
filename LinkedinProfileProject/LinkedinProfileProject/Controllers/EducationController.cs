@@ -23,5 +23,10 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _educationService.SaveUpdateEducation(educationModel);
         }
+        [HttpPost("deleteEducationByUserId")]
+        public async Task<bool> DeleteEducationByUserId([FromBody] int id)
+        {
+            return await _educationService.DeleteEducation(id);
+        }
     }
 }

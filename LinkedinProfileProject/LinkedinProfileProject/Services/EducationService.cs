@@ -51,5 +51,17 @@ namespace LinkedinProfileProject.Services
 
             return educationModel;
         }
+        public async Task<bool> DeleteEducation(int id)
+        {
+            var dbItem = await _context.Education.Where(l => l.Id == id).FirstOrDefaultAsync();
+            if (dbItem != null)
+            {
+                _context.Education.Remove(dbItem);
+            }
+            await _context.SaveChangesAsync();
+            return true;
+            //catch e düşürse false dön
+
+        }
     }
 }
