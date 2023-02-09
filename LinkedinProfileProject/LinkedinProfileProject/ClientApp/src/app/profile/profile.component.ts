@@ -15,14 +15,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUser();
+    // this.getUser();
   }
 
-  getUser() {
-    this.profileService.getUser().subscribe(res => {
-      this.userModel = res;
-      console.log(res);
-    })
-  }
+  // getUser() {
+  //   this.profileService.getUser().subscribe(res => {
+  //     this.userModel = res;
+  //     console.log(res);
+  //   })
+  // }
 
 }

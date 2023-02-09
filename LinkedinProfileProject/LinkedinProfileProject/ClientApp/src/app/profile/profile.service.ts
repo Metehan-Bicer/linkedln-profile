@@ -12,8 +12,8 @@ export class ProfileService {
 
   }
 
-  getUser(): Observable<UserModel> {
-    return this.http.get<UserModel>('api/user/getUser');
-  }
+  // getUser(): Observable<UserModel> {
+  //   return this.http.get<UserModel>('api/user/getUser');
+  // }
 
 }
