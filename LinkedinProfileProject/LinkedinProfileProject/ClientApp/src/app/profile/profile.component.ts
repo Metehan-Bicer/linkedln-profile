@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { UserModel } from './profile.model';
 import { ProfileService } from './profile.service';
 
@@ -8,6 +8,8 @@ import { ProfileService } from './profile.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild("profileEditModal") ngbmd: TemplateRef<any>;
+
   userModel: UserModel = new UserModel();
 
   constructor(
@@ -15,14 +17,18 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getUser();
+    this.getUser();
   }
 
-  // getUser() {
-  //   this.profileService.getUser().subscribe(res => {
-  //     this.userModel = res;
-  //     console.log(res);
-  //   })
-  // }
+  getUser() {
+    this.profileService.getUser().subscribe(res => {
+      this.userModel = res;
+      console.log(res);
+    })
+  }
+
+  profileEdit() {
+    console.log("profileEdit")
+  }
 
 }
