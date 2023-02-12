@@ -5,9 +5,8 @@
                 <b>Deneyim</b>
             </div>
             <div class="col-1" style="margin-left: 2%; margin-top: 2%;">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <i class="fa fa-plus" (click)="openExperinceEdit()" style="cursor: pointer;" aria-hidden="true"></i>
             </div>
-            <span class="glyphicon glyphicon-pencil"></span>
 
         </div>
 
@@ -21,3 +20,6 @@
         </div>
     </div>
 </div>
+
+<app-experience-edit (cancel-event)="onCloseExperinceEdit()" [bindForEdit]="experienceId" [bindForEditUserId]="userId"
+    *ngIf="experienceEditVisible"></app-experience-edit>

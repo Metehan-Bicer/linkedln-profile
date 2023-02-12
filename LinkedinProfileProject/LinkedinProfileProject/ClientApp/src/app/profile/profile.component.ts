@@ -9,12 +9,13 @@ import { ProfileService } from './profile.service';
 })
 export class ProfileComponent implements OnInit {
   @ViewChild("profileEditModal") ngbmd: TemplateRef<any>;
-
+  userId: number = 0;
   userModel: UserModel = new UserModel();
 
   constructor(
     private readonly profileService: ProfileService) {
   }
+  userEditVisible: boolean = false
 
   ngOnInit(): void {
     this.getUser();
@@ -23,12 +24,17 @@ export class ProfileComponent implements OnInit {
   getUser() {
     this.profileService.getUser().subscribe(res => {
       this.userModel = res;
-      console.log(res);
+      this.userId = res.id
     })
   }
 
-  profileEdit() {
-    console.log("profileEdit")
+  openUserEdit() {
+    this.userEditVisible = true;
+  }
+  onCloseUserEdit() {
+    this.getUser();
+    this.userEditVisible = false;
+
   }
 
 }

@@ -11,6 +11,7 @@ namespace LinkedinProfileProject.Models
         public string SurName { get; set; }
         public string Job { get; set; }
         public int DistrictId { get; set; }
+        public int CityId { get; set; }
         public string DistrictName { get; set; }
         public string CityName { get; set; }
         public string Company { get; set; }

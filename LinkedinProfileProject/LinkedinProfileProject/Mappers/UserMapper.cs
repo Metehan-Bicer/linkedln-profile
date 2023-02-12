@@ -12,7 +12,9 @@ namespace LinkedinProfileProject.Mappers
              .ForMember(destination => destination.DistrictName,
              options => options.MapFrom(source => source.District.DistrictName))
              .ForMember(destination => destination.CityName,
-             options => options.MapFrom(source => source.District.City.CityName));
+             options => options.MapFrom(source => source.District.City.CityName))
+             .ForMember(destination => destination.CityId,
+             options => options.MapFrom(source => source.District.CityId));
 
             CreateMap<UserModel, User>();
 

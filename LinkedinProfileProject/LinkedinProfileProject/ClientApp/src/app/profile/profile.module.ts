@@ -4,6 +4,10 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { ProfileComponent } from './profile.component';
 import { EducationComponent } from './components/education/education.component';
 import { AbilitiesComponent } from './components/abilities/abilities.component';
+import { UserEditComponent } from './components/user_profile/user-edit/user-edit.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExperienceEditComponent } from './components/experience/experience-edit/experience-edit.component';
 
 
 
@@ -12,10 +16,14 @@ import { AbilitiesComponent } from './components/abilities/abilities.component';
     ExperienceComponent,
     ProfileComponent,
     EducationComponent,
-    AbilitiesComponent
+    AbilitiesComponent,
+    UserEditComponent,
+    ExperienceEditComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
 

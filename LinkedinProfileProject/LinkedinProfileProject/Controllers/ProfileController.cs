@@ -18,6 +18,11 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _profileService.GetUser();
         }
+        [HttpGet("getUserById/{userId}")]
+        public async Task<UserModel> GetUserById(int userId)
+        {
+            return await _profileService.GetUserById(userId);
+        }
         [HttpPost("saveUpdateUser")]
         public async Task<UserModel> SaveUpdateUser([FromBody] UserModel userModel)
         {

@@ -29,6 +29,16 @@ namespace LinkedinProfileProject.Services
 
             return userModel;
         }
+        public async Task<UserModel> GetUserById(int userId)
+        {
+            UserModel userModel = new UserModel();
+
+            var tempUser = await _context.User.Where(x => x.Id == userId).Include(x => x.District).ThenInclude(x => x.City).FirstOrDefaultAsync();
+            userModel = _mapper.Map<UserModel>(tempUser);
+            // todo mete her metoda try catch eklenecek log yapısı ekle
+
+            return userModel;
+        }
         public async Task<UserModel> SaveUpdateUser(UserModel userModel)
         {
 

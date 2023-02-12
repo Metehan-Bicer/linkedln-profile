@@ -10,7 +10,6 @@ namespace LinkedinProfileProject.Entities
         public int UserId { get; set; }
         public string Title { get; set; }
         public string CompanyName { get; set; }
-        public DateTime StartDate { get; set; }
         public string Sector { get; set; }
         public string Comment { get; set; }
         [ForeignKey("UserId")]
