@@ -44,6 +44,7 @@ export class UserPhotoComponent implements OnInit {
 
   submitFileUpload() {
     this.fileUploadRequest.userId = this.userId;
+    this.fileUploadRequest.id = this.imageModel.id;
     this.profileService.fileUpload(this.fileUploadRequest).subscribe((res) => {
       this.cancelEvent.emit();
     });

@@ -69,6 +69,9 @@ export class ProfileService {
     if (data.userId) {
       formData.append("userId", data.userId.toString());
     }
+    if (data.id) {
+      formData.append("id", data.id.toString());
+    }
     return this.http.post<boolean>("api/base/fileUpload/", formData);
   }
   getProfilePhoto(userId: number): Observable<FileUploadModelImage> {

@@ -65,8 +65,19 @@ namespace LinkedinProfileProject.Services
                     {
                         await file.CopyToAsync(fileSteam);
                     }
-                    var fileUplodad = _mapper.Map<FileUploadModel, FileUpload>(fileUploadModel);
-                    await _context.FileUpload.AddAsync(fileUplodad);
+                    var temFileUpload = await _context.FileUpload.Where(x => x.Id == fileUploadModel.Id).FirstOrDefaultAsync();
+                    if (temFileUpload == null)
+                    {
+                        temFileUpload = new FileUpload();
+                        temFileUpload = _mapper.Map<FileUploadModel, FileUpload>(fileUploadModel);
+                        await _context.FileUpload.AddAsync(temFileUpload);
+                    }
+                    else
+                    {
+                        temFileUpload = _mapper.Map<FileUpload>(fileUploadModel);
+                        _context.ChangeTracker.Clear();
+                        _context.Update(temFileUpload);
+                    }
                     await _context.SaveChangesAsync();
                     transaction.Commit();
                     result = true;
