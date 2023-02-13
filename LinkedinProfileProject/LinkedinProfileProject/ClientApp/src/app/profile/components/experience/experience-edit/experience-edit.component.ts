@@ -13,8 +13,7 @@ export class ExperienceEditComponent implements OnInit {
   public set bindForEdit(val: number) {
     this.experinceId = val;
     if (this.experinceId != null || this.experinceId != 0 || this.experinceId != undefined) {
-      //todo mete get metodu
-      // this.getExperience();
+      this.getExperience();
     }
     else {
       this.experinceId = 0;
@@ -49,6 +48,7 @@ export class ExperienceEditComponent implements OnInit {
       title: [null, [Validators.required]],
       companyName: [null, [Validators.required]],
       sector: [null, [Validators.required]],
+      userId: [null],
       comment: [null],
     });
   }
@@ -57,8 +57,19 @@ export class ExperienceEditComponent implements OnInit {
     let requestModel = new ExperienceModel();
     requestModel = this.editForm.getRawValue();
     requestModel.userId = this.userId;
-    console.log(requestModel)
     this.profileService.saveUpdateExperience(requestModel).subscribe(res => {
+      this.cancelEvent.emit();
+    })
+  }
+
+  getExperience() {
+    this.profileService.getExperienceById(this.experinceId).subscribe(res => {
+      this.editForm.setValue(res);
+    })
+  }
+
+  onDelete() {
+    this.profileService.deleteExperienceById(this.experinceId).subscribe(res => {
       this.cancelEvent.emit();
     })
   }

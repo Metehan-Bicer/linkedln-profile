@@ -8,6 +8,9 @@ import { UserEditComponent } from './components/user_profile/user-edit/user-edit
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExperienceEditComponent } from './components/experience/experience-edit/experience-edit.component';
+import { EducationEditComponent } from './components/education/education-edit/education-edit.component';
+import { AbilitiesEditComponent } from './components/abilities/abilities-edit/abilities-edit.component';
+import { UserPhotoComponent } from './components/user_profile/user-photo/user-photo.component';
 
 
 
@@ -18,7 +21,10 @@ import { ExperienceEditComponent } from './components/experience/experience-edit
     EducationComponent,
     AbilitiesComponent,
     UserEditComponent,
-    ExperienceEditComponent
+    ExperienceEditComponent,
+    EducationEditComponent,
+    AbilitiesEditComponent,
+    UserPhotoComponent
   ],
   imports: [
     CommonModule,

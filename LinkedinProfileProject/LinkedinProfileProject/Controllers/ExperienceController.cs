@@ -18,13 +18,18 @@ namespace LinkedinProfileProject.Controllers
         {
             return await _experienceService.GetExperienceList(userId);
         }
+        [HttpGet("getExperienceById/{expId}")]
+        public async Task<ExperienceModel> GetExperienceById(int expId)
+        {
+            return await _experienceService.GetExperienceById(expId);
+        }
         [HttpPost("saveUpdateExperience")]
         public async Task<ExperienceModel> SaveUpdateExperience([FromBody] ExperienceModel experienceModel)
         {
             return await _experienceService.SaveUpdateExperience(experienceModel);
         }
-        [HttpPost("deleteExperienceByUserId")]
-        public async Task<bool> DeleteExperienceByUserId([FromBody] int id)
+        [HttpPost("deleteExperienceById")]
+        public async Task<bool> DeleteExperienceUserId([FromBody] int id)
         {
             return await _experienceService.DeleteExperience(id);
         }

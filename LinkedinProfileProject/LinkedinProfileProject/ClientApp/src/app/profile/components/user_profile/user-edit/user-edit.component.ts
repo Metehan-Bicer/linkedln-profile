@@ -13,7 +13,6 @@ export class UserEditComponent implements OnInit {
   public set bindForEdit(val: number) {
     this.userId = val;
     if (this.userId != null || this.userId != 0 || this.userId != undefined) {
-      //todo mete get metodu
       this.getUser();
     }
     else {

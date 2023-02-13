@@ -18,6 +18,7 @@ namespace LinkedinProfileProject.Contexts
             services.AddScoped<IExperienceService, ExperienceService>();
             services.AddScoped<IEducationService, EducationService>();
             services.AddScoped<IAbilitiesService, AbilitiesService>();
+            services.AddScoped<ILogService, LogService>();
 
 
             services.AddAutoMapper(
@@ -25,7 +26,9 @@ namespace LinkedinProfileProject.Contexts
            typeof(BaseMapper),
            typeof(ExperienceMapper),
            typeof(EducationMapper),
-           typeof(AbilitiesMapper)
+           typeof(AbilitiesMapper),
+           typeof(FileUploadMapper)
+
            );
         }
     }

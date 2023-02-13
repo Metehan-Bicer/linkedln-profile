@@ -28,3 +28,33 @@ export class ExperienceModel {
     public sector: string;
     public comment: string;
 }
+export class EducationModel {
+    public id: number;
+    public userId: number;
+    public school: string;
+    public department: string;
+    public comment: string;
+}
+export class AbilitiesModel {
+    public id: number;
+    public userId: number;
+    public abilitiesName: string;
+}
+
+export class FileUploadModel {
+    public id: number;
+    public file: File;
+    public userId: number;
+    public adress: string;
+    public extension: string;
+    public contentType: string;
+}
+export class FileUploadModelImage {
+    public id: number;
+    public userId: number;
+    public adress: string;
+    public extension: string;
+    public contentType: string;
+    public base64: string;
+
+}

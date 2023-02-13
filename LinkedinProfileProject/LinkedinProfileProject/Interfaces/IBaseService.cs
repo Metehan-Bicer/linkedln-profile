@@ -1,4 +1,5 @@
-﻿using LinkedinProfileProject.Models;
+﻿using LinkedinProfileProject.Entities;
+using LinkedinProfileProject.Models;
 
 namespace LinkedinProfileProject.Interfaces
 {
@@ -6,5 +7,8 @@ namespace LinkedinProfileProject.Interfaces
     {
         Task<List<CityModel>> GetCity();
         Task<List<DistrictModel>> GetDistrictByCityId(int cityId);
+        Task<bool> SaveFile(IFormFile file, FileUploadModel fileUploadModel);
+        Task<FileUploadModelImage> GetProfilePhoto(int userId);
+
     }
 }

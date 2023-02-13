@@ -5,6 +5,7 @@ using LinkedinProfileProject.Entities;
 using LinkedinProfileProject.Interfaces;
 using LinkedinProfileProject.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Net.NetworkInformation;
 
 namespace LinkedinProfileProject.Services
@@ -13,56 +14,97 @@ namespace LinkedinProfileProject.Services
     {
         private readonly IMapper _mapper;
         private readonly LinkedlnProfileContext _context;
+        private readonly ILogService _logService;
 
-        public AbilitiesService(IMapper mapper, LinkedlnProfileContext context)
+
+        public AbilitiesService(ILogService logService, IMapper mapper, LinkedlnProfileContext context)
         {
+            _logService = logService;
             _mapper = mapper;
             _context = context;
         }
         public async Task<List<AbilitiesModel>> GetAbilitiesList(int userId)
         {
-            List<AbilitiesModel> userModel = new List<AbilitiesModel>();
-
-            userModel = await _mapper.ProjectTo<AbilitiesModel>(_context.Abilities.Where(x => x.UserId == userId)).ToListAsync();
-
-            // todo mete her metoda try catch eklenecek log yapısı ekle
-
-            return userModel;
+            List<AbilitiesModel> abilitiesModel = new List<AbilitiesModel>();
+            try
+            {
+                abilitiesModel = await _mapper.ProjectTo<AbilitiesModel>(_context.Abilities.Where(x => x.UserId == userId)).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                await _logService.LogException("GetAbilitiesList", e);
+            }
+            return abilitiesModel;
         }
         public async Task<AbilitiesModel> SaveUpdateAbilities(AbilitiesModel abilitiesModel)
         {
-
-            var tempAbilities = await _context.Abilities.Where(x => x.Id == abilitiesModel.Id).FirstOrDefaultAsync();
-            if (tempAbilities == null)
+            using (var transaction = _context.Database.BeginTransaction(IsolationLevel.ReadCommitted))
             {
-                tempAbilities = new Abilities();
-                tempAbilities = _mapper.Map<AbilitiesModel, Abilities>(abilitiesModel);
-                _context.Abilities.Add(tempAbilities);
-            }
-            else
-            {
-                tempAbilities = _mapper.Map<Abilities>(abilitiesModel);
-                _context.ChangeTracker.Clear();
-                _context.Update(tempAbilities);
-            }
-            await _context.SaveChangesAsync();
-            // transaction.Commit();
-            // todo mete her metoda try catch eklenecek log yapısı ekle ekleyince transaction aç
+                try
+                {
+                    var tempAbilities = await _context.Abilities.Where(x => x.Id == abilitiesModel.Id).FirstOrDefaultAsync();
+                    if (tempAbilities == null)
+                    {
+                        tempAbilities = new Abilities();
+                        tempAbilities = _mapper.Map<AbilitiesModel, Abilities>(abilitiesModel);
+                        _context.Abilities.Add(tempAbilities);
+                    }
+                    else
+                    {
+                        tempAbilities = _mapper.Map<Abilities>(abilitiesModel);
+                        _context.ChangeTracker.Clear();
+                        _context.Update(tempAbilities);
+                    }
+                    await _context.SaveChangesAsync();
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    await _logService.LogException("SaveUpdateAbilities", e);
 
+                }
+            }
             return abilitiesModel;
         }
 
         public async Task<bool> DeleteAbilities(int id)
         {
-            var dbItem = await _context.Abilities.Where(l => l.Id == id).FirstOrDefaultAsync();
-            if (dbItem != null)
+            using (var transaction = _context.Database.BeginTransaction(IsolationLevel.ReadCommitted))
             {
-                _context.Abilities.Remove(dbItem);
+                try
+                {
+                    var dbItem = await _context.Abilities.Where(l => l.Id == id).FirstOrDefaultAsync();
+                    if (dbItem != null)
+                    {
+                        _context.Abilities.Remove(dbItem);
+                    }
+                    await _context.SaveChangesAsync();
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    await _logService.LogException("DeleteAbilities", e);
+                    return false;
+                }
             }
-            await _context.SaveChangesAsync();
             return true;
-            //catch e düşürse false dön
+        }
+        public async Task<AbilitiesModel> GetAbilitiesById(int abilitiesId)
+        {
+            AbilitiesModel abilitiesModel = new AbilitiesModel();
+            try
+            {
+                var temAbilities = await _context.Abilities.Where(x => x.Id == abilitiesId).FirstOrDefaultAsync();
+                abilitiesModel = _mapper.Map<AbilitiesModel>(temAbilities);
+            }
+            catch (Exception e)
+            {
+                await _logService.LogException("GetAbilitiesById", e);
 
+            }
+            return abilitiesModel;
         }
     }
 }

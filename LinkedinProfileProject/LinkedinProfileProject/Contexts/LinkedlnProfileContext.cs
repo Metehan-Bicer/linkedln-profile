@@ -16,6 +16,8 @@ namespace LinkedinProfileProject.Contexts
         public DbSet<Experience> Experience { get; set; }
         public DbSet<Education> Education { get; set; }
         public DbSet<Abilities> Abilities { get; set; }
+        public DbSet<FileUpload> FileUpload { get; set; }
+        public DbSet<Log> Log { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
